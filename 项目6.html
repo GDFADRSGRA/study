@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调查报告</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .score {
+            display: flex;
+            align-items: center;
+        }
+        .score-bar {
+            width: 100px;
+            height: 10px;
+            margin-right: 10px;
+        }
+        .score-value {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>朋友</th>
+        </tr>
+        <tr>
+            <td>
+                这些年一个人，风也过雨也走，有过泪有过错，还记得坚持什么，真爱过才会懂，会寂寞会回首，终有你，终有梦在心中……
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <details>
+                    <summary>查看评分结果</summary>
+                    <ul>
+                        <li class="score">
+                            <div class="score-bar" style="background-color: green; width: 60%;"></div>
+                            <span class="score-value">6分</span>
+                        </li>
+                        <li class="score">
+                            <div class="score-bar" style="background-color: yellow; width: 80%;"></div>
+                            <span class="score-value">8分</span>
+                        </li>
+                        <li class="score">
+                            <div class="score-bar" style="background-color: purple; width: 40%;"></div>
+                            <span class="score-value">4分</span>
+                        </li>
+                    </ul>
+                </details>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
