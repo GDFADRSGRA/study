@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜狐热点新闻</title>
+    <style>
+        /* 初始状态：绿色 */
+        .news-list li {
+            font-size: 16px;
+            color: #27ae60; /* 初始绿色 */
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            cursor: pointer; /* 鼠标悬浮显示指针，提示可点击 */
+        }
+        /* 点击后状态：黄色 */
+        .news-list li.clicked {
+            color: #f1c40f; /* 点击后黄色 */
+        }
+        .news-list li::before {
+            content: "·";
+            color: #3498db;
+            font-size: 20px;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        /* 注册图片样式 */
+        .register-img {
+            margin-top: 20px;
+            width: 120px; /* 可根据实际图片尺寸调整宽度 */
+            height: auto; /* 保持图片比例 */
+            cursor: pointer; /* 提示可点击 */
+            border: none; /* 清除默认边框 */
+        }
+    </style>
+</head>
+<body>
+    <h1 >搜狐热点新闻</h1>
+    <hr color="yellow">
+    <ul class="news-list">
+        <li onclick="this.classList.toggle('clicked')">铁道部千万天价宣传片调查:张艺谋酬劳250万</li>
+        <li onclick="this.classList.toggle('clicked')">中国失独问题调查:不解决是对人民不负责</li>
+        <li onclick="this.classList.toggle('clicked')">海军副司令:全国人民请放心 海军必不辱使命</li>
+        <li onclick="this.classList.toggle('clicked')">国内最赚钱炼油厂巨亏 员工羞于穿工作服上街</li>
+        <li onclick="this.classList.toggle('clicked')">北京公交车在闹市行驶中起火 纵火犯被抓</li>
+        <li onclick="this.classList.toggle('clicked')">韩国反朝名人欲诉中国政府 称在华遭严刑逼供</li>
+        <li onclick="this.classList.toggle('clicked')">20多位神秘人50万放生万条红鱼 市民争相垂钓</li>
+        <li onclick="this.classList.toggle('clicked')">晨报:朝鲜黑马爆冷夺冠 称感谢金正日赐力量</li>
+    </ul>
+    <!-- 注册图片+超链接：将src替换为实际图片地址，href替换为目标链接 -->
+    <a href="https://example.com/register" target="_blank">
+        <img src="马上注册.png" alt="马上注册" class="register-img">
+    </a>
+</body>
+<html>

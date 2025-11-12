@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布局示例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            border: 1px solid blue;
+        }
+
+        .left-column {
+            width: 20%;
+            border-right: 1px solid blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .right-column {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-banner {
+            border-bottom: 1px solid blue;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .course-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .course-card {
+            width: 25%;
+            border: 1px solid blue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-column">
+            <div style="border: 1px dashed blue; padding: 20px;">图片（PHP入门相关）</div>
+        </div>
+        <div class="right-column">
+            <div class="top-banner">
+                <div style="border: 1px dashed blue; padding: 10px;">图片（快乐编程 就用Python横幅）</div>
+            </div>
+            <div class="course-list">
+                <div class="course-card">
+                    <div style="border: 1px dashed green; padding: 10px;">图片（UGUI编码深度剖析）</div>
+                    <div style="border: 1px dashed blue; padding: 10px;">文字（Android Hybrid APP开发实战 H5+原生！）</div>
+                </div>
+                <div class="course-card">
+                    <div style="border: 1px dashed green; padding: 10px;">图片（Kami2首页界面切换效果）</div>
+                    <div style="border: 1px dashed blue; padding: 10px;">文字（Kami2首页界面切换效果）</div>
+                </div>
+                <div class="course-card">
+                    <div style="border: 1px dashed green; padding: 10px;">图片（Unity Profiler入门）</div>
+                    <div style="border: 1px dashed blue; padding: 10px;">文字（Unity Profiler入门）</div>
+                </div>
+                <div class="course-card">
+                    <div style="border: 1px dashed green; padding: 10px;">图片（Cocos2d-x 引擎源码中的纹理优化）</div>
+                    <div style="border: 1px dashed blue; padding: 10px;">文字（Cocos2d-x 引擎源码中的纹理优化）</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
