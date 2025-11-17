@@ -1,89 +1,99 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>布局示例</title>
+    <title>Document</title>
     <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         .container {
-            display: flex;
-            width: 100%;
-            border: 1px solid blue;
-        }
-
-        .left-column {
-            width: 20%;
-            border-right: 1px solid blue;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
-
-        .right-column {
+            height: 500px;
             width: 80%;
-            display: flex;
-            flex-direction: column;
+            margin: 10px auto;
         }
 
-        .top-banner {
-            border-bottom: 1px solid blue;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .left-part,
+        .middle-part,
+        .right-part {
+            width: 32%;
+            height: 90%;
+            border: 2px solid gray;
+            float: left;
+            margin: 2px;
+            box-sizing: border-box;
         }
 
-        .course-list {
-            display: flex;
-            flex-wrap: wrap;
+        .left-part {
+            position: relative;
         }
 
-        .course-card {
-            width: 25%;
+        .box1,
+        .box2,
+        .box3,
+        .box4 {
+            width: 45%;
+            height: 45%;
             border: 1px solid blue;
+            position: absolute;
+            text-align: center;
+        }
+
+        .middle-part {
+            text-align: center;
+        }
+
+        .box2 {
+            top: 0;
+            right: 0;
+        }
+
+        .box3 {
+            bottom: 0;
+            left: 0;
+        }
+
+        .box4 {
+            bottom: 0;
+            right: 0;
+        }
+
+        .right-part {
             display: flex;
-            flex-direction: column;
+            justify-items: center;
             align-items: center;
-            padding: 10px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .box6,
+        .box7 {
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            width: 60%;
+            height: 40%;
+            border: 1px solid blue;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="left-column">
-            <div style="border: 1px dashed blue; padding: 20px;">图片（PHP入门相关）</div>
+        <div class="left-part">
+            <div class="box1">1</div>
+            <div class="box2">2</div>
+            <div class="box3">3</div>
+            <div class="box4">4</div>
         </div>
-        <div class="right-column">
-            <div class="top-banner">
-                <div style="border: 1px dashed blue; padding: 10px;">图片（快乐编程 就用Python横幅）</div>
-            </div>
-            <div class="course-list">
-                <div class="course-card">
-                    <div style="border: 1px dashed green; padding: 10px;">图片（UGUI编码深度剖析）</div>
-                    <div style="border: 1px dashed blue; padding: 10px;">文字（Android Hybrid APP开发实战 H5+原生！）</div>
-                </div>
-                <div class="course-card">
-                    <div style="border: 1px dashed green; padding: 10px;">图片（Kami2首页界面切换效果）</div>
-                    <div style="border: 1px dashed blue; padding: 10px;">文字（Kami2首页界面切换效果）</div>
-                </div>
-                <div class="course-card">
-                    <div style="border: 1px dashed green; padding: 10px;">图片（Unity Profiler入门）</div>
-                    <div style="border: 1px dashed blue; padding: 10px;">文字（Unity Profiler入门）</div>
-                </div>
-                <div class="course-card">
-                    <div style="border: 1px dashed green; padding: 10px;">图片（Cocos2d-x 引擎源码中的纹理优化）</div>
-                    <div style="border: 1px dashed blue; padding: 10px;">文字（Cocos2d-x 引擎源码中的纹理优化）</div>
-                </div>
-            </div>
+        <div class="middle-part">5</div>
+        <div class="right-part">
+            <div class="box6">6</div>
+            <div class="box7">7</div>
         </div>
     </div>
 </body>
