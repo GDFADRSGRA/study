@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动漫世界</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* 页面容器 */
+        .page-container {
+            width: 90%;
+            max-width: 800px;
+            min-height: 600px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 页面切换效果 */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            height: 100%;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* 登录页样式 */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .login-title {
+            font-size: 2.5rem;
+            color: #f1d751;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .enter-button {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            background-color: #f1d751;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px #efde86;
+        }
+
+        .enter-button:hover {
+            background-color: #efde86;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px #f1d751;
+        }
+
+        /* 图片展示页样式 */
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .gallery-title {
+            font-size: 2rem;
+            color: #f1d751;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .anime-card {
+            width: 100%;
+            max-width: 500px;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .anime-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .anime-card.flipped .anime-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .anime-card-front,
+        .anime-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .anime-card-front {
+            background-color: #f1d751;
+            color: white;
+        }
+
+        .anime-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .anime-card-back {
+            background-color: #f8f9fa;
+            color: #2d3436;
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .anime-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #f1d751;
+        }
+
+        .anime-description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .close-button {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f1d751;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        /* 新闻页样式 */
+        .news-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-title {
+            font-size: 2rem;
+            color: #f1d751;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .news-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .news-image {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .news-text {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-headline {
+            font-size: 1.5rem;
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .news-details {
+            color: #636e72;
+            line-height: 1.6;
+        }
+
+        /* 留言页样式 */
+        .message-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-title {
+            font-size: 2rem;
+            color: #f1d751;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .message-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-textarea {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .message-textarea:focus {
+            outline: none;
+            border-color: #f1d751;
+        }
+
+        /* 导航按钮样式 */
+        .nav-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f1d751;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px #f1d751;
+        }
+
+        .nav-button:hover {
+            background-color: #f1d751;
+            transform: translateY(-2px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .page-container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .login-title,
+            .gallery-title,
+            .news-title,
+            .message-title {
+                font-size: 1.8rem;
+            }
+
+            .enter-button {
+                padding: 12px 30px;
+                font-size: 1.3rem;
+            }
+
+            .anime-card {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <!-- 登录页 -->
+        <div id="login-page" class="page active">
+            <div class="login-container">
+                <h1 class="login-title">欢迎来到动漫世界</h1>
+                <button id="enter-button" class="enter-button">点击进入</button>
+            </div>
+        </div>
+
+        <!-- 图片展示页 -->
+        <div id="gallery-page" class="page">
+            <div class="gallery-container">
+                <h2 class="gallery-title">热门动漫推荐</h2>
+
+                <!-- 动漫卡片1 -->
+                <div class="anime-card" id="anime-card-1">
+                    <div class="anime-card-inner">
+                        <div class="anime-card-front">
+                            <img src="https://bkimg.cdn.bcebos.com/pic/b812c8fcc3cec3fdfc03ce9d80d3c33f8794a5c2899a?x-bce-process=image/format,f_auto/watermark,image_d2F0ZXIvYmFpa2UyNzI,g_7,xp_5,yp_5,P_20/resize,m_lfit,limit_1,h_1080"
+                                alt="孤独摇滚" class="anime-image">
+                        </div>
+                        <div class="anime-card-back">
+                            <h3 class="anime-title">孤独摇滚</h3>
+                            <p class="anime-description">
+                                绰号“小孤独”的后藤独是个开口说话必用“啊…”起头，极度认生而又孤僻的少女。她憧憬着自己也能闪耀起來的乐队活动，然而即便开始弹吉他也交不到朋友，于是她度过了每天独自弹6小时吉他的初中时代，在网络上以“吉他英雄”名义上传了优秀的演奏视频，也妄想能够活跃在文化节的演出中，等到她醒悟的时候别说找到乐队成员了，连一个朋友都交不到就成了高中生。距离成为家里蹲仅一步之遥的她，某一天，在公园中被“结束乐队”的鼓手伊地知虹夏搭上了话。她的日常也开始一点点的出现变化。
+                            </p>
+                            <button class="close-button">返回</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 动漫卡片2 -->
+                <div class="anime-card" id="anime-card-2">
+                    <div class="anime-card-inner">
+                        <div class="anime-card-front">
+                            <img src="https://bkimg.cdn.bcebos.com/pic/503d269759ee3d6d55fbe48986597a224f4a20a4706b?x-bce-process=image/format,f_auto/watermark,image_d2F0ZXIvYmFpa2UyNzI,g_7,xp_5,yp_5,P_20/resize,m_lfit,limit_1,h_1080"
+                                alt="葬送的芙莉莲" class="anime-image">
+                        </div>
+                        <div class="anime-card-back">
+                            <h3 class="anime-title">葬送的芙莉莲</h3>
+                            <p class="anime-description">
+                                《葬送的芙莉莲》是由山田钟人负责故事、阿部司负责作画的日本漫画作品，于2020年4月28日起在小学馆发行的漫画杂志《周刊少年Sunday》上连载，讲述在打倒了魔王的勇者一行人当中，魔法使芙莉莲是精灵，她和其他三人有不一样的地方，生活在“之后”的世界里，她感受到了什么，留下来的人们所编织的葬送与祈祷又意味着什么，故事从“冒险的结束”开始。
+                            </p>
+                            <button class="close-button">返回</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 动漫卡片3 -->
+                <div class="anime-card" id="anime-card-3">
+                    <div class="anime-card-inner">
+                        <div class="anime-card-front">
+                            <img src="https://bkimg.cdn.bcebos.com/pic/b8014a90f603738d6b3e0520bb1bb051f819ecb8?x-bce-process=image/format,f_auto/watermark,image_d2F0ZXIvYmFpa2UyNzI,g_7,xp_5,yp_5,P_20/resize,m_lfit,limit_1,h_1080"
+                                alt="你的名字" class="anime-image">
+                        </div>
+                        <div class="anime-card-back">
+                            <h3 class="anime-title">你的名字</h3>
+                            <p class="anime-description">
+                                《你的名字》是新海诚执导的动画电影，讲述住在乡下的女高中生三叶与住在东京的男高中生泷在梦中互换身体，体验彼此生活的奇幻故事。影片画面精美，音乐动人，情感真挚，是一部融合了爱情、奇幻与时空穿越元素的经典作品。
+                            </p>
+                            <button class="close-button">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="news-button" class="nav-button">动漫新闻</button>
+        </div>
+
+        <!-- 动漫新闻页 -->
+        <div id="news-page" class="page">
+            <div class="news-container">
+                <h2 class="news-title">动漫新闻</h2>
+                <div class="news-content">
+                    <img src="https://bkimg.cdn.bcebos.com/pic/b03533fa828ba61ea8d35af1b06f800a304e241ff3e3?x-bce-process=image/format,f_auto/watermark,image_d2F0ZXIvYmFpa2UyNzI,g_7,xp_5,yp_5,P_20/resize,m_lfit,limit_1,h_1080"
+                        alt="动漫新闻图片" class="news-image">
+                    <div class="news-text">
+                        <h3 class="news-headline">《鬼灭之刃无限城篇》正式上映</h3>
+                        <p class="news-details">
+                            动画电影系列《鬼灭之刃 无限城篇》改编自吾峠呼世晴著作的漫画《鬼灭之刃》，由ufotable负责制作
+                            。该系列共分为三章上映，其中第一章“猗窝座再袭”于2025年7月18日在日本上映 。
+                            截至于2025年9月15日，该系列第一章票房在日本已达330亿日元，位列日本影史票房第2位 。8月31日，影片在中国台湾地区已达6.58亿新台币，登上日本电影在台上映票房冠军
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button id="message-button" class="nav-button">留言</button>
+        </div>
+
+        <!-- 留言页 -->
+        <div id="message-page" class="page">
+            <div class="message-container">
+                <h2 class="message-title">留言板</h2>
+                <div class="message-form">
+                    <textarea class="message-textarea" placeholder="在这里写下你想说的话..."></textarea>
+                    <button id="submit-button" class="nav-button">提交留言</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面切换功能
+        document.getElementById('enter-button').addEventListener('click', function () {
+            switchPage('gallery-page');
+        });
+
+        document.getElementById('news-button').addEventListener('click', function () {
+            switchPage('news-page');
+        });
+
+        document.getElementById('message-button').addEventListener('click', function () {
+            switchPage('message-page');
+        });
+
+        document.getElementById('submit-button').addEventListener('click', function () {
+            const textarea = document.querySelector('.message-textarea');
+            if (textarea.value.trim() !== '') {
+                alert('留言提交成功！感谢您的参与。');
+                textarea.value = '';
+            } else {
+                alert('请输入留言内容！');
+            }
+        });
+
+        // 动漫卡片点击事件
+        document.querySelectorAll('.anime-card').forEach(card => {
+            card.addEventListener('click', function () {
+                // 先关闭其他已打开的卡片
+                document.querySelectorAll('.anime-card').forEach(c => {
+                    if (c !== this) {
+                        c.classList.remove('flipped');
+                    }
+                });
+
+                // 切换当前卡片状态
+                this.classList.toggle('flipped');
+            });
+        });
+
+        // 关闭按钮事件
+        document.querySelectorAll('.close-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation(); // 防止事件冒泡
+                this.closest('.anime-card').classList.remove('flipped');
+            });
+        });
+
+        function switchPage(pageId) {
+            // 隐藏所有页面
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 显示目标页面
+            document.getElementById(pageId).classList.add('active');
+
+            // 关闭所有翻转的卡片
+            document.querySelectorAll('.anime-card').forEach(card => {
+                card.classList.remove('flipped');
+            });
+        }
+    </script>
+</body>
+
+</html>

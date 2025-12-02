@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>动漫主题网页</title>
+    <style>
+        /* 基础样式：简洁排版 */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #f09;
+            padding-bottom: 10px;
+            text-align: center
+        }
+
+        /* 登录表单样式 */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 300px;
+        }
+
+        .login-form input,
+        .login-form button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-form button {
+            background: #f09;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 图片展示样式 */
+        .img-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .img-list img {
+            width: 200px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* 新闻列表样式 */
+        .news-list {
+            margin-top: 20px;
+        }
+
+        .news-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        /* 留言版块样式 */
+        .msg-form {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 500px;
+        }
+
+        #msg-content {
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #msg-list {
+            margin-top: 20px;
+        }
+
+        .msg-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 一、网站题目 -->
+    <h1 style="text-align: center; color: #f09;">欢迎来到寰球动漫</h1>
+
+    <!-- 二、网站功能实现：1.登录页面 -->
+    <div class="section">
+        <h2>登录页面</h2>
+        <form class="login-form">
+            <label>用户名：</label>
+            <input type="text" placeholder="请输入用户名" required>
+            <label>密码：</label>
+            <input type="password" placeholder="请输入密码" required>
+            <button type="submit">登录</button>
+        </form>
+    </div>
+
+    <!-- 2. 动漫图片展示 -->
+    <div class="section">
+        <h2>动漫图片展示</h2>
+        <div class="img-list">
+            <img src="碧蓝之海.png" alt="碧蓝之海">
+            <img src="蜡笔小新.png" alt="蜡笔小新">
+            <img src="神偷奶爸4.png" alt="神偷奶爸4">
+            <img src="精灵旅社4.jpg" alt="精灵旅社4">
+        </div>
+    </div>
+
+    <!-- 3. 动漫新闻 -->
+    <div class="section">
+        <h2>动漫新闻</h2>
+        <div class="news-list">
+            <div class="news-item">
+                <h3>《你的名字》</h3>
+                <p>由新海诚执导的动画电影，讲述住在乡下的女高中生三叶与住在东京的男高中生泷在梦中互换身体，体验彼此生活的奇幻故事。影片画面精美，音乐动人，情感真挚，是一部融合了爱情、奇幻与时空穿越元素的经典作品。</p>
+            </div>
+            <div class="news-item">
+                <h3>《精灵旅社4》</h3>
+                <p>由詹妮弗·克鲁斯卡、德里克·德莱蒙联合执导，布赖恩·哈尔、安迪·萨姆伯格、赛琳娜·戈麦斯、吉姆·加菲根参与配音的动画片，于2022年1月14日在美国网络上映、2022年4月3日在中国内地上映。该片讲述了因为一场意外精灵家族的成员们全部都变身成人类，失去超能力的他们开始想方设法寻求解决办法，德古拉与人类女婿约翰尼一同来到了亚马逊雨林开启冒险之旅的故事。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. 留言版块 -->
+    <div class="section">
+        <h2>留言版块</h2>
+        <form class="msg-form" id="msgForm">
+            <label>你的留言：</label>
+            <textarea id="msg-content" placeholder="分享你喜欢的动漫吧..." required></textarea>
+            <button type="submit">提交留言</button>
+        </form>
+        <div id="msg-list">
+            <!-- 留言展示区 -->
+            <div class="msg-item">匿名用户：《你的名字》的剧情太精彩了，强烈推荐！</div>
+            <div class="msg-item">匿名用户：求推荐治愈系动漫~</div>
+        </div>
+    </div>
+
+    <!-- 简单留言提交功能 -->
+    <script>
+        const msgForm = document.getElementById('msgForm');
+        const msgContent = document.getElementById('msg-content');
+        const msgList = document.getElementById('msg-list');
+
+        msgForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // 阻止表单默认提交
+            const newMsg = document.createElement('div');
+            newMsg.className = 'msg-item';
+            newMsg.textContent = `我：${msgContent.value}`;
+            msgList.appendChild(newMsg);
+            msgContent.value = ''; // 清空输入框
+        });
+    </script>
+</body>
+
+</html>

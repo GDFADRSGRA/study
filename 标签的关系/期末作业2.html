@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>片片枫叶 - 武汉枫叶观赏指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            background-color: #f9f7f2;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 30px 0;
+            background: linear-gradient(to bottom, #f9f7f2, #e8f4e8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #a8e6cf;
+            /* 浅绿色 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .circle:hover {
+            transform: scale(1.05);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .content-box {
+            display: flex;
+            gap: 0;
+            /* 移除gap，使用边框分隔 */
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e0e0e0;
+        }
+
+        .left-panel {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 2px solid #e0e0e0;
+            /* 左右面板分隔线 */
+        }
+
+        .left-panel img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .right-panel {
+            flex: 2;
+            padding: 30px;
+        }
+
+        .title {
+            font-size: 32px;
+            color: #e86a6a;
+            /* 粉橙红色 */
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px dashed #e86a6a;
+            padding-bottom: 10px;
+        }
+
+        .content-text {
+            display: flex;
+            /* 使用flex布局将文本分为两栏 */
+            gap: 30px;
+        }
+
+        .text-column {
+            flex: 1;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .text-column p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+        }
+
+        .text-column:first-child {
+            border-right: 2px dashed #e86a6a;
+            /* 文本分栏虚线分隔 */
+            padding-right: 15px;
+        }
+
+        .text-column:last-child {
+            padding-left: 15px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .content-box {
+                flex-direction: column;
+            }
+
+            .left-panel {
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+            }
+
+            .content-text {
+                flex-direction: column;
+            }
+
+            .text-column:first-child {
+                border-right: none;
+                border-bottom: 2px dashed #e86a6a;
+                padding-right: 0;
+                padding-bottom: 15px;
+            }
+
+            .text-column:last-child {
+                padding-left: 0;
+                padding-top: 15px;
+            }
+
+            .header {
+                padding: 20px 0;
+            }
+
+            .circle {
+                width: 70px;
+                height: 70px;
+                font-size: 20px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="circle">片</div>
+        <div class="circle">片</div>
+        <div class="circle">枫</div>
+        <div class="circle">叶</div>
+    </div>
+
+    <div class="content-container">
+        <div class="content-box">
+            <div class="left-panel">
+                <img src="枫叶.jpg" alt="枫叶">
+            </div>
+            <div class="right-panel">
+                <h2 class="title">武汉枫叶已上新</h2>
+                <div class="content-text">
+                    <div class="text-column">
+                        <p>文华学院大四学生熊宇告诉九派新闻，红枫是学校的特色，每年11月份左右学校都会办"红枫文化节"。自上周六开始，红枫就开始慢慢变红，现在还不是最红的时候，预计未来一周红枫达到最红，更红的时候更好看。
+                        </p>
+                        <p>"以往人多时地铁站会设置引导牌，说看红枫的从哪个口出"，熊宇说，学校氛围开放包容，允许游客进入校园观景，还安排有志愿者引导。</p>
+                    </div>
+                    <div class="text-column">
+                        <p>
+                            一位现场志愿者介绍，从11月18日起，在红枫文化节期间，学校特地征集志愿者来引导游客，每天4个班次，服务时间分别为8：10-9：45、10:05-11:40、14:00-15:35、15:45-17:20，每班安排8名志愿者，"我们就站在前往红枫林的路边，一路上有人来问我们，我们就给他们解答。"
+                        </p>
+                        <p>
+                            于女士是一位无人机爱好者，前一天在社交软件上看到红枫的视频，便赶了一个多小时的车特地来这里拍摄。她认为，学校校园允许市民进入观景，资源共享，这是很好的举措。"枫叶很漂亮，现在武汉人的生活水平越来越高，对这种季节性的美欣赏能力也变高了。"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
